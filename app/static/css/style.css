@@ -1,0 +1,63 @@
+
+body,h1 {font-family: "Raleway", Arial, sans-serif}
+h1 {letter-spacing: 6px}
+.w3-row-padding img {margin-bottom: 12px}
+
+body {
+   background-image: url("../img/background.jpg");
+}
+
+.w3-corner{ border-radius: 25px;}
+.w3-gold{color: #4c4000;}
+.w3-curtains{color: #ffffff; font-size:70%; background-color:#8e6b4b}
+.w3-wallpapers{color: #ffffff; font-size:70%; background-color:#9c8654}
+.w3-furnitures{color: #ffffff; font-size:70%; background-color:#aa7b4f}
+.w3-textiles{color: #ffffff; font-size:70%; background-color:#baaf93}
+
+
+.w3-display-container:hover .w3-curtains{color: #ffffff; font-size:50%; width:100%; background-color:#8e6b4b}
+.w3-display-container:hover .w3-wallpapers{color: #ffffff; font-size:50%; width:100%; background-color:#9c8654}
+.w3-display-container:hover .w3-furnitures{color: #ffffff; font-size:50%; width:100%; background-color:#aa7b4f}
+.w3-display-container:hover .w3-textiles{color: #ffffff; font-size:50%; width:100%; background-color:#baaf93}
+
+
+.hoverable {
+  cursor:default;
+  color:#000;
+  text-decoration:none;
+}
+.hoverable .hover {
+  display:none;
+}
+.hoverable:hover .normal {
+  display:none;
+}
+.hoverable:hover .hover {
+  display:inline;  /* CHANGE IF FOR BLOCK ELEMENTS */
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.w3-small-menu{
+    width: 100%;
+    height: 100%;
+    background-color:#000000;
+    position: fixed!important;
+    top: 0;
+    left: 0;
+  z-index:3;
+  overflow:auto;
+ display:none;
+ padding-top:150px;
+
+    }
+  .w3-display-container{
+z-index:-1;
+}
