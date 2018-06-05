@@ -25,15 +25,18 @@ body {
   cursor:default;
   color:#000;
   text-decoration:none;
+
 }
 .hoverable .hover {
   display:none;
+
 }
 .hoverable:hover .normal {
   display:none;
 }
 .hoverable:hover .hover {
   display:inline;  /* CHANGE IF FOR BLOCK ELEMENTS */
+
 }
 
 hr {
@@ -59,5 +62,5 @@ hr {
 
     }
   .w3-display-container{
-
+z-index:auto;
 }
