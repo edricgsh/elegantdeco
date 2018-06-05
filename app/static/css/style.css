@@ -15,7 +15,7 @@ body {
 .w3-textiles{color: #ffffff; font-size:70%; background-color:#baaf93}
 
 
-.w3-display-container:hover .w3-curtains{color: #ffffff; font-size:50%; width:100%; background-color:#8e6b4b}
+.w3-display-container:hover .w3-curtains{color: #ffffff; font-size:50%; width:100%; background-color:#8e6b4b; z-index:3;}
 .w3-display-container:hover .w3-wallpapers{color: #ffffff; font-size:50%; width:100%; background-color:#9c8654}
 .w3-display-container:hover .w3-furnitures{color: #ffffff; font-size:50%; width:100%; background-color:#aa7b4f}
 .w3-display-container:hover .w3-textiles{color: #ffffff; font-size:50%; width:100%; background-color:#baaf93}
@@ -62,9 +62,5 @@ hr {
 
     }
   .w3-display-container{
-z-index:1;
-}
-.w3-z{
-  z-index:2;
-  position: relative;
+z-index:-1;
 }
