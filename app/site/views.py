@@ -1,5 +1,6 @@
-# app/site/views.py
+# elegantdeco/app/site/views.py
 from flask import abort, render_template
+from app.models import Category, Product
 from app.site import site
 # Index page
 @site.route('/')
