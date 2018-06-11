@@ -15,3 +15,8 @@ def returns():
 @site.route('/shipping')
 def shipping():
     return render_template('site/shipping.html', title="Shipping")
+# Products page
+@site.route('/products/<int:id>', methods=['GET', 'POST'])
+def products(id):
+    products = Product.query.filter(Product.category.any(id=id)).all()
+    return render_template('site/products.html', products=products,  title="products")
