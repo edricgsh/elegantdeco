@@ -1,0 +1,94 @@
+<!-- app/templates/layout-admin.html -->
+<!DOCTYPE html>
+<html>
+  <title>{{ title }} | My CMS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="{{ url_for('static', filename='css/w3.css') }}" rel="stylesheet">
+<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"></script>
+<body>
+<!-- Side Navigation -->
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card w3-padding-large" id="myNavbar">
+    <a href="{{ url_for('admin.dashboard') }}" class="w3-bar-item w3-button w3-wide">Administration</a>
+    <!-- Right-sided navbar links -->
+
+    <!-- Modify nav bar menu -->
+    <div class="w3-right w3-hide-small">
+        {% if current_user.is_authenticated %}
+          {% if current_user.is_admin %}
+      <a href="{{ url_for('admin.admin_dashboard') }}" class="w3-bar-item w3-button"><i class="far fa-clipboard fa-fw"></i>Dashboard</a>
+
+      <div class="w3-dropdown-hover">
+      <a href="{{ url_for('admin.list_products') }}" class="w3-button"><i class="fas fa-cube fa-fw"></i> Products </a>
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+      <a href="{{ url_for('admin.list_categories') }}" class="w3-bar-item w3-button"><i class="fas fa-user fa-fw"></i> Categories</a>
+    </div>
+  </div>
+  
+  <div class="w3-dropdown-hover">
+   <button class="w3-button"><i class="fa fa-users fa-fw"></i> Users</button>
+   <div class="w3-dropdown-content w3-bar-block w3-card-4">
+     <a href="{{ url_for('admin.list_departments') }}" class="w3-bar-item w3-button"><i class="far fa-list-alt fa-fw"></i> Departments</a>
+     <a href="{{ url_for('admin.list_roles') }}" class="w3-bar-item w3-button"><i class="fas fa-user-plus fa-fw"></i> Roles</a>
+     <a href="{{ url_for('admin.list_employees') }}" class="w3-bar-item w3-button"><i class="fas fa-user fa-fw"></i> Employees</a>
+   </div>
+ </div>
+
+          {% else %}
+      <a href="{{ url_for('admin.dashboard') }}" class="w3-bar-item w3-button">Dashboard</a>
+          {% endif %}
+      <div class="w3-dropdown-hover">
+       <button class="w3-button"><img src="{{ url_for('static', filename='img/avatar.png') }}" class="w3-circle w3-margin-right" style="width:46px"> Hi, {{ current_user.username }}!</button>
+       <div class="w3-dropdown-content w3-bar-block w3-card-4">
+         <a href="#" class="w3-bar-item w3-button"><i class="fas fa-user fa-fw"></i> Profile</a>
+         <a href="#" class="w3-bar-item w3-button"><i class="fas fa-envelope fa-fw"></i> Email</a>
+         <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button"><i class="fas fa-sign-out-alt fa-fw"></i> Logout</a>
+       </div>
+     </div>
+
+        {% else %}
+        <a href="{{ url_for('site.index') }}" class="w3-bar-item w3-button">HOME</a>
+        <a href="" class="w3-bar-item w3-button">ABOUT</a>
+        <a href="" class="w3-bar-item w3-button">CONTACT</a>
+        <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button"><i class="fas fa-sign-in-alt"></i> Login</a>
+
+        {% endif %}
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+<nav class="w3-sidebar w3-black w3-animate-top w3-xxlarge" style="display:none;padding-top:150px" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-black w3-xxlarge w3-padding w3-display-topright" style="padding:6px 24px">
+    <i class="fa fa-remove"></i>
+  </a>
+  <div class="w3-bar-block w3-center">
+    <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">About</a>
+    <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Photos</a>
+    <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Shop</a>
+    <a href="" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Contact</a>b
+    <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-sign-in"></i> Login</a>
+  </div>
+</nav>
+<!-- The Content Section -->
+{% block body %}
+{% endblock %}
+<!-- End Page Content -->
+<!-- Footer -->
+<footer class="w3-container w3-padding-16 w3-center w3-opacity w3-light-grey w3-xlarge w3-footer">
+  <p class="w3-medium">Powered by <a href="www.panelinios.gr" target="_blank">Panelinios.gr</a></p>
+  <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
+    <span class="w3-text w3-theme-light w3-padding">Top</span> 
+    <a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">
+    <i class="fa fa-chevron-circle-up"></i></span></a>
+  </div>
+</footer>
+<!-- Script for Sidebar, Tabs, Accordions, Progress bars, Slideshows, Maps  -->
+<script type='text/javascript' src="{{ url_for('static', filename='js/javascript.js') }}"></script>
+</body>
+</html>

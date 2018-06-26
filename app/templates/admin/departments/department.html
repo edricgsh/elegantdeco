@@ -1,0 +1,56 @@
+<!-- app/templates/admin/departments/department.html -->
+{% extends "layout-admin.html" %}
+{% block title %}
+    {% if add_department %}
+        Add Department
+    {% else %}
+        Edit Department
+    {% endif %}
+{% endblock %}
+{% block body %}
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <hr>
+  <div class="w3-center">
+       {% if add_department %}
+       <h2>Add Department</h2>
+      {% else %}
+      <h2>Edit Department</h2>
+      {% endif %}
+      </div>
+       <br/>
+       {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <ul>
+              {% for message in messages %}
+              <li>{{ message }}</li>
+              {% endfor %}
+          </ul>
+          {% endif %}
+          {% endwith %}
+ <br/>
+       <div class="w3-col m6">
+         <form action="" method="post">
+           <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+             <div class="w3-half">
+               {{ form.hidden_tag() }}
+               {{ form.name.label }}<br>
+               {{ form.name(size=20) }}
+               {% for error in form.name.errors %}
+           <span style="color: red;">[{{ error }}]</span>
+           {% endfor %}
+             </div>
+             <div class="w3-half">
+               {{ form.description.label }}<br>
+               {{ form.description(size=20) }}
+               {% for error in form.description.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
+             </div>
+           </div>
+           {{ form.submit() }}
+
+         </form>
+       </div>
+     </div>
+   </div>
+{% endblock %}

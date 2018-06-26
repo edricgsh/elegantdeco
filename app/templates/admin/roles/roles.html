@@ -1,0 +1,73 @@
+<!-- app/templates/admin/roles/roles.html -->
+{% extends "layout-admin.html" %}
+{% block title %}Roles{% endblock %}
+{% block body %}
+<div class="w3-row-padding w3-padding-64 w3-container">
+<hr>
+<div class="w3-center">
+<h2>Roles</h2>
+<p w3-class="w3-large">Add, Edit, Delete Roles.</p>
+</div>
+        <div class="w3-button w3-circle w3-large w3-card-4 w3-green">
+          <a href="{{ url_for('admin.add_role') }}"><i class="fa fa-plus"></i></a>
+        </div>
+                {% with messages = get_flashed_messages() %}
+                   {% if messages %}
+                   <ul>
+                       {% for message in messages %}
+                       <li>{{ message }}</li>
+                       {% endfor %}
+                   </ul>
+                   {% endif %}
+                   {% endwith %}
+                <br/>
+                {% if roles %}
+                  <hr class="intro-divider">
+                  <div class="w3-responsive w3-card-4">
+                    <table class="w3-table w3-striped w3-bordered">
+                      <thead>
+                        <tr class="w3-blue">
+                          <th width="15%"> Name </th>
+                          <th width="40%"> Description </th>
+                          <th width="15%"> Employee </th>
+                          <th width="15%"> Edit </th>
+                          <th width="15%"> Delete </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for role in roles %}
+                      <tr class="w3-white">
+                          <td> {{ role.name }} </td>
+                          <td> {{ role.description }} </td>
+                          <td>
+                            {% if role.employees %}
+                              {{ role.employees.count() }}
+                            {% else %}
+                              0
+                            {% endif %}
+                          </td>
+                          <td>
+                            <a href="{{ url_for('admin.edit_role', id=role.id) }}">
+                              <i class="fas fa-edit"></i>
+                            </a>
+                          </td>
+                          <td>
+                            <a href="{{ url_for('admin.delete_role', id=role.id) }}">
+                              <i class="fa fa-trash"></i>
+                            </a>
+                          </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div style="text-align: center">
+                {% else %}
+                  <div style="text-align: center">
+                    <h3> No roles have been added. </h3>
+                    <hr class="intro-divider">
+                {% endif %}
+                </div>
+              </div>
+            </div>
+{% endblock %}

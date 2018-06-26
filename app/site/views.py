@@ -5,7 +5,9 @@ from app.site import site
 # Index page
 @site.route('/')
 def index():
-    return render_template('site/index.html', title="Welcome")
+    products = Product.query.filter_by(category_id=1)
+    print (products)
+    return render_template('site/index.html', products=products, title="Welcome")
 @site.route('/terms')
 def terms():
     return render_template('site/terms.html', title="Terms")
@@ -15,8 +17,18 @@ def returns():
 @site.route('/shipping')
 def shipping():
     return render_template('site/shipping.html', title="Shipping")
+ # Categories page
+@site.route('/categories/<int:id>', methods=['GET', 'POST'])
+def categories(id):
+    categories = Category.query.filter_by(category_id=id)
+    return render_template('site/categories.html', categories=categories,  title="Κατηγορία")
 # Products page
 @site.route('/products/<int:id>', methods=['GET', 'POST'])
 def products(id):
-    products = Product.query.filter(Product.category.any(id=id)).all()
+    products = Product.query.filter_by(category_id=id)
     return render_template('site/products.html', products=products,  title="products")
+# Product page
+@site.route('/product/<int:id>', methods=['GET', 'POST'])
+def product(id):
+    products = Product.query.filter_by(id=id)
+    return render_template('site/product.html', products=products, title=products)

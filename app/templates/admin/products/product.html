@@ -1,0 +1,69 @@
+<!-- app/templates/admin/products/product.html -->
+{% extends "layout-admin.html" %}
+{% block title %}
+    {% if add_product %}
+        Add Product
+    {% else %}
+        Edit Product
+    {% endif %}
+{% endblock %}
+{% block body %}
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <hr>
+       <br/>
+       {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <ul>
+              {% for message in messages %}
+              <li>{{ message }}</li>
+              {% endfor %}
+          </ul>
+          {% endif %}
+          {% endwith %}
+ <br/>
+       <div class="w3-col m12">
+             <form method="POST" action="">
+                {{ form.hidden_tag() }}
+         <div class="w3-row-padding">
+         <div class="w3-col m2">
+           <label><i class="fas fa-barcode"></i> Product code*</label>
+           {{ form.code(placeholder='Code', class_='w3-input w3-border', type='text') }}
+           {% for error in form.code.errors %}
+           <span style="color: red;">{{ error }}</span>
+           {% endfor %}
+         </div>
+         <div class="w3-col m5">
+           <label><i class="fas fa-file"></i> Title*</label>
+           {{ form.name(placeholder='Title', class_='w3-input w3-border', type='text') }}
+         {% for error in form.name.errors %}
+     <span style="color: red;">{{ error }}</span>
+     {% endfor %}
+         </div>
+         <div class="w3-col m1">
+           <label><i class="fas fa-euro-sign"></i> Price</label>
+             {{ form.price(placeholder='0', class_='w3-input w3-border', type='number') }}
+         {% for error in form.name.errors %}
+     <span style="color: red;">{{ error }}</span>
+     {% endfor %}
+         </div>
+    <div class="w3-col m2 w3-padding-32">
+      {{ form.category }}
+      {% for error in form.category.errors %}
+      <span style="color: red;">{{ error }}</span>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="w3-row-padding">
+<div class="w3-col m6">
+  <input class="w3-input" type="textarea" cols="150" placeholder="Description">
+<span style="color: red;">{{ error }}</span>
+</div>
+</div>
+ <div class="w3-padding w3-right">
+   {{ form.submit() }}
+ </div>
+ </form>
+       </div>
+     </div>
+   </div>
+{% endblock %}
