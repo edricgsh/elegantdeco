@@ -32,9 +32,14 @@ def shipping():
 def categories(id):
     categories = Category.query.filter_by(category_id=id)
     sum = 0
+    # In categories, there are all the sub categories
     for category in categories:
+        # For each sub category, do a query to get all the product size
+        # and add all of them together
         products = Product.query.filter_by(category_id=category.id).all()
         sum += len(products)
+
+    # Pass the parent category sum of products to the html page
     return render_template('site/categories.html', parent_num=sum,
                            categories=categories, title="Κατηγορία")
 
