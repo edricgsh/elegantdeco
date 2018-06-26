@@ -3,17 +3,19 @@
 {% block body %}
 
 <div class="w3-main" style="margin-bottom:128px">
-  <!-- First Photo Grid-->
+    <!-- First Photo Grid-->
     <div class="w3-row-padding">
-      {% for category in categories -%}
-      <div class="w3-quarter w3-container w3-margin-bottom">
-        <div class="w3-display-container">
-          <a href="" class="hoverable">
-    <span class="normal w3-button w3-wide w3-curtains w3-display-right w3-round">{{ category.name }}</span><span class="hover w3-button w3-wide w3-curtains w3-display-right w3-round">453 Furnitures</span>
-        <img src="{{ url_for('static', filename='img/furniture.jpg') }}" alt="Custom made furniture" style="width:100%" class="w3-corner"></a>
-      </div>
-      </div>
-    {% endfor %}
+        {% for category in categories -%}
+        <div class="w3-quarter w3-container w3-margin-bottom">
+            <div class="w3-display-container">
+                <a href="" class="hoverable">
+                    <span class="normal w3-button w3-wide w3-curtains w3-display-right w3-round">{{ category.name }}</span><span
+                        class="hover w3-button w3-wide w3-curtains w3-display-right w3-round">{{parent_num }}Furnitures</span>
+                    <img src="{{ url_for('static', filename='img/furniture.jpg') }}" alt="Custom made furniture"
+                         style="width:100%" class="w3-corner"></a>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-    </div>
+</div>
 {% endblock %}

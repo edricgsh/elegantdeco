@@ -2,33 +2,50 @@
 from flask import abort, render_template
 from app.models import Category, Product
 from app.site import site
+
+
 # Index page
 @site.route('/')
 def index():
     products = Product.query.filter_by(category_id=1)
-    print (products)
+    print(products)
     return render_template('site/index.html', products=products, title="Welcome")
+
+
 @site.route('/terms')
 def terms():
     return render_template('site/terms.html', title="Terms")
+
+
 @site.route('/returns')
 def returns():
     return render_template('site/returns.html', title="Returns")
+
+
 @site.route('/shipping')
 def shipping():
     return render_template('site/shipping.html', title="Shipping")
- # Categories page
+
+
+# Categories page
 @site.route('/categories/<int:id>', methods=['GET', 'POST'])
 def categories(id):
     categories = Category.query.filter_by(category_id=id)
-    return render_template('site/categories.html', categories=categories,  title="Κατηγορία")
-# Products page
-@site.route('/products/<int:id>', methods=['GET', 'POST'])
-def products(id):
-    products = Product.query.filter_by(category_id=id)
-    return render_template('site/products.html', products=products,  title="products")
-# Product page
-@site.route('/product/<int:id>', methods=['GET', 'POST'])
-def product(id):
-    products = Product.query.filter_by(id=id)
-    return render_template('site/product.html', products=products, title=products)
+    sum = 0
+    for category in categories:
+        products = Product.query.filter_by(category_id=category.id).all()
+        sum += len(products)
+    return render_template('site/categories.html', parent_num=sum,
+                           categories=categories, title="Κατηγορία")
+
+    # Products page
+    @site.route('/products/<int:id>', methods=['GET', 'POST'])
+    def products(id):
+        products = Product.query.filter_by(category_id=id)
+        return render_template('site/products.html', products=products, title="products")
+
+    # Product page
+    @site.route('/product/<int:id>', methods=['GET', 'POST'])
+    def product(id):
+        products = Product.query.filter_by(id=id)
+        return render_template('site/product.html', products=products, title=products)
